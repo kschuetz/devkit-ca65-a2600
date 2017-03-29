@@ -1,0 +1,15 @@
+
+export CC	:=	cc65
+export LD       :=      ld65
+export AS	:=	ca65
+export AR	:=	ar65
+export EMULATOR :=	stella
+export EMULATORFLAGS := -format ntsc
+
+%.o: %.s
+	@echo $(notdir $<)
+	$(AS) $(ASFLAGS) $(INCLUDE) -o $@ $<
+
+%.bin:
+	@echo linking $(notdir $@)
+	$(LD)  $(LDFLAGS) $(OFILES) $(LIBPATHS) $(LIBS) -o $@
